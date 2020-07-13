@@ -8,11 +8,9 @@ def f(nums):
     for i in range(n):
         already_sorted = True
 
-
         for j in range(n - i - 1):
-            if num_split[j] > num_split[j + 1]:
-                num_split[j], num_split[j + 1] = num_split[j + 1], num_split[j]
-
+            if float(num_split[j]) > float(num_split[j + 1]):
+                num_split[j], num_split[j + 1] = float(num_split[j + 1]), float(num_split[j])
                 already_sorted = False
 
         if already_sorted: 
