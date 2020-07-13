@@ -32,11 +32,16 @@ def f(nums):
             output['text'] = 'Numbers only'
             break
 
-        else:
-            output['text'] = num_split
+    # if selectio == 'least':
+        output['text'] = num_split
+    # elif least :
+        # output['text'] = num_split.reverse()
+
 
 
 root = tk.Tk()
+var = tk.StringVar()
+var.set('least')
 
 height = 250
 width = 350
@@ -72,9 +77,11 @@ switch_variable = tk.StringVar(value="off")
 least = tk.Radiobutton(frame, text="L --> G", variable=switch_variable,
                        indicatoron=False, value="off", width=8)
 greatest = tk.Radiobutton(frame, text="G --> L", variable=switch_variable,
-                          indicatoron=False, value="low", width=8)
+                         indicatoron=False, value="low", width=8)
 least.place(relx=0.25, rely=0.5)
 greatest.place(relx=0.5, rely=0.5)
+
+selection = var.get()
 
 button = tk.Button(frame, text='SORT', bg='#E6E6E6', command=lambda: f(numbers.get()))
 button.place(relx=0.34, rely=0.75, relwidth=0.3, relheight=0.2)
