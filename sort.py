@@ -3,6 +3,8 @@ import tkinter as tk
 
 
 def f(nums):
+    global switch_variable
+
     num_split = nums.split()
     n = len(num_split)
 
@@ -15,9 +17,14 @@ def f(nums):
         already_sorted = True
 
         for j in range(n - i - 1):
-            if float(num_split[j]) > float(num_split[j + 1]):
-                num_split[j], num_split[j + 1] = float(num_split[j + 1]), float(num_split[j])
-                already_sorted = False
+            if type(num_split[j]) == int:
+                if num_split[j] > num_split[j + 1]:
+                    num_split[j], num_split[j + 1] = num_split[j + 1], num_split[j]
+                    already_sorted = False
+            else:
+                if float(num_split[j]) > float(num_split[j + 1]):
+                    num_split[j], num_split[j + 1] = float(num_split[j + 1]), float(num_split[j])
+                    already_sorted = False
 
         if already_sorted:
             break
@@ -32,16 +39,18 @@ def f(nums):
             output['text'] = 'Numbers only'
             break
 
-    # if selectio == 'least':
-        output['text'] = num_split
-    # elif least :
-        # output['text'] = num_split.reverse()
+        else:
+            if switch_variable.get() == 'greatest':
+                num_split = num_split[::-1]
+                output['text'] = num_split
+                break
 
+            elif switch_variable.get() =='least':
+                output['text'] = num_split
+                break
 
 
 root = tk.Tk()
-var = tk.StringVar()
-var.set('least')
 
 height = 250
 width = 350
@@ -73,15 +82,14 @@ number_label.place(relx=0.25, rely=0.04, relwidth=0.5, relheight=0.13)
 numbers = tk.Entry(frame, bg='#BDBDBD')
 numbers.place(relx=0.2, rely=0.25, relwidth=0.6, relheight=0.2)
 
-switch_variable = tk.StringVar(value="off")
+switch_variable = tk.StringVar()
 least = tk.Radiobutton(frame, text="L --> G", variable=switch_variable,
-                       indicatoron=False, value="off", width=8)
+                       indicatoron=False, value="least", width=8)
 greatest = tk.Radiobutton(frame, text="G --> L", variable=switch_variable,
-                         indicatoron=False, value="low", width=8)
+                          indicatoron=False, value="greatest", width=8)
 least.place(relx=0.25, rely=0.5)
 greatest.place(relx=0.5, rely=0.5)
 
-selection = var.get()
 
 button = tk.Button(frame, text='SORT', bg='#E6E6E6', command=lambda: f(numbers.get()))
 button.place(relx=0.34, rely=0.75, relwidth=0.3, relheight=0.2)
