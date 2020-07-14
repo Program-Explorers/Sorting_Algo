@@ -68,13 +68,22 @@ number_label.place(relx=0.25, rely=0.04, relwidth=0.5, relheight=0.13)
 numbers = tk.Entry(frame, bg='#BDBDBD')
 numbers.place(relx=0.2, rely=0.25, relwidth=0.6, relheight=0.2)
 
+switch_variable = tk.StringVar(value="off")
+least = tk.Radiobutton(frame, text="L --> G", variable=switch_variable,
+                       indicatoron=False, value="off", width=8)
+greatest = tk.Radiobutton(frame, text="G --> L", variable=switch_variable,
+                          indicatoron=False, value="low", width=8)
+least.place(relx=0.25, rely=0.5)
+greatest.place(relx=0.5, rely=0.5)
+
 button = tk.Button(frame, text='SORT', bg='#E6E6E6', command=lambda: f(numbers.get()))
-button.place(relx=0.34, rely=0.6, relwidth=0.3, relheight=0.2)
+button.place(relx=0.34, rely=0.75, relwidth=0.3, relheight=0.2)
 
 lower_frame = tk.Frame(root, bg='#2E9AFE')
 lower_frame.place(relx=0.13, rely=0.65, relwidth=0.75, relheight=0.15)
 
 output = tk.Label(lower_frame)
 output.place(relx=0.02, rely=0.1, relwidth=0.96, relheight=0.8)
+
 
 root.mainloop()
